@@ -1,0 +1,14 @@
+:root {
+    --bg-color: #F6F7F8;
+
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    height: 100vh;
+}
