@@ -17,5 +17,26 @@
     <div class="container d-flex-c-c">
         <img src="./assets/icons/join-logo.svg" class="logo" alt="Join">
     </div>
-    </body>
+
+    <header>
+        <p>Not a Join user?</p>
+        <button onclick="window.location.href='./signup.html'">Sign up</button>
+    </header>
+    <main>
+        <h1>Log in</h1>
+        <form onsubmit="logIn()">
+            <input required type="email" id="email" placeholder="Email">
+            <input required type="password" id="password" placeholder="Password">
+            <input type="checkbox" name="remember-me" id="">
+            <div>
+                <button>Log in</button>
+                <button>Guest Log in</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p>Privacy Policy</p>
+        <p>Legal Notice</p>
+    </footer>
+</body>
 </html>
