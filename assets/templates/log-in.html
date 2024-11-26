@@ -17,7 +17,7 @@
 
 </head>
 <body>
-    <header>
+    <header class="section-pad section-gap">
         <div class="">
             <img src="../icons/join-logo.svg" class="logo-little" alt="Join">
         </div>
@@ -27,18 +27,20 @@
         </div>
     </header>
     <main>
-        <h1>Log in</h1>
-        <form onsubmit="logIn(); return false;">
-            <input required type="email" id="email" placeholder="Email">
-            <input required type="password" id="password" placeholder="Password">
-            <div>
-                <button>Log in</button>
-                <button>Guest Log in</button>
-            </div>
-        </form>
-        <div id="messageBox"></div>
+        <div class="login">
+            <h1>Log in</h1>
+            <form onsubmit="logIn(); return false;">
+                <input required type="email" id="email" placeholder="Email">
+                <input required type="password" id="password" placeholder="Password">
+                <div>
+                    <button>Log in</button>
+                    <button>Guest Log in</button>
+                </div>
+            </form>
+            <div id="messageBox"></div>
+        </div>
     </main>
-    <footer>
+    <footer class="section-pad section-gap">
         <p>Privacy Policy</p>
         <p>Legal Notice</p>
     </footer>

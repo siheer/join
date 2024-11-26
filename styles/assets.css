@@ -7,3 +7,29 @@
     height: 122px;
     width: 100px;
 }
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 449px;
+    width: 652px;
+    background-color: var(--bg-white);
+    border-radius: 12px;
+}
