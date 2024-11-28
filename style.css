@@ -1,10 +1,19 @@
 :root {
+    --primary-blue: #2A3647;
+
     --bg-color: #F6F7F8;
     --bg-white: #FFFFFF;
+
+    --color-light-blue: #29ABE2;
+
 }
 
 body {
     background-color: var(--bg-color);
+    color: var(--primary-blue);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -12,3 +21,4 @@ body {
     margin: 0 auto;
     height: 100vh;
 }
+
