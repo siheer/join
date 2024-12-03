@@ -12,10 +12,18 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    cursor: pointer;
+}
+
 .d-flex-c-c {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.gap-16 {
+    gap: 16px;
 }
 
 .section-pad {
