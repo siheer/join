@@ -22,18 +22,21 @@
         <div class="">
             <img src="../icons/join-logo.svg" class="logo-little" alt="Join">
         </div>
-        <div>
+        <div class="header-signup">
             <p>Not a Join user?</p>
-            <button onclick="window.location.href='./signup.html'">Sign up</button>
+            <button class="button" onclick="window.location.href='./signup.html'">Sign up</button>
         </div>
     </header>
     <main>
         <div class="login">
-            <h1>Log in</h1>
+            <div class="headline-container">
+                <h1>Log in</h1>
+                <div class="underline"></div>
+            </div>
             <form onsubmit="logIn(); return false;">
-                <input required type="email" id="email" placeholder="Email">
-                <input required type="password" id="password" placeholder="Password">
-                <div>
+                <input class="input-email" required type="email" id="email" placeholder="Email">
+                <input class="input-password" required type="password" id="password" placeholder="Password">
+                <div class="button-container">
                     <button class="button">Log in</button>
                     <button class="button-2">Guest Log in</button>
                 </div>
