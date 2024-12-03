@@ -91,6 +91,7 @@ input::placeholder {
     display: flex;
     justify-content: space-evenly;
     padding-top: 24px;
+    width: 100%;
 }
 
 .button {
