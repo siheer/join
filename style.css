@@ -23,6 +23,11 @@ a {
     color: var(--color-gray);
 }
 
+.logo-little {
+    height: 122px;
+    width: 100px;
+}
+
 .container {
     max-width: 1920px;
     margin: 0 auto;
@@ -38,6 +43,29 @@ a {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 64px 0;
+    gap: 120px;
+}
+
+.sidebar-mainbox {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
