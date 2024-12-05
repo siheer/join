@@ -3,6 +3,7 @@
 
     --bg-color: #F6F7F8;
     --bg-white: #FFFFFF;
+    --bg-color-dark-blue: #091931;
 
     --color-light-blue: #29ABE2;
     --color-light-gray: #D1D1D1;
@@ -54,14 +55,29 @@ a {
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    width: 100%;
 }
 
 .links-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 32px;
+    gap: 20px;
+}
+
+.links-container a {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 48px;
+}
+
+.links-container a:hover {
+    background-color: var(--bg-color-dark-blue);
 }
 
 .sidebar-footer {
