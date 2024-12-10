@@ -16,6 +16,10 @@ a:hover {
     cursor: pointer;
 }
 
+.d-flex {
+    display: flex;
+}
+
 .d-flex-c-c {
     display: flex;
     justify-content: center;

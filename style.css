@@ -4,6 +4,7 @@
     --bg-color: #F6F7F8;
     --bg-white: #FFFFFF;
     --bg-color-dark-blue: #091931;
+    --bg-color-blue: #0C2E62;
 
     --color-light-blue: #29ABE2;
     --color-light-gray: #D1D1D1;
@@ -84,4 +85,38 @@ a {
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background: var(--bg-white);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 0 48px 0 120px;}
+
+.user-icon-container {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+    border: 3px solid var(--primary-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-icon-container:hover {
+    background-color: rgba(var(--bg-color-blue), 0.2);
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+    color: var(--color-light-blue);
 }

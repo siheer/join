@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="/styles/scrollbar.css">
     <link rel="stylesheet" href="/styles/standard.css">
     <link rel="stylesheet" href="/style.css">
+    <script src="/script/includes.js"></script>
     <script src="/script/log-in.js"></script>
     <script src="/script/register.js"></script>
     <script src="/script/templates.js"></script>
     <script src="/script.js"></script>
 
 </head>
-<body>
+<body onload="includeHTML();">
+    <div w3-include-html="sidebar.html">
+        <p>Die Sidebar konnte nicht geladen werden.</p>
+    </div>
     
 </body>
 </html>
