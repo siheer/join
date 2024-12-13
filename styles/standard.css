@@ -30,6 +30,10 @@ a:hover {
     gap: 16px;
 }
 
+.gap-24 {
+    gap: 24px;
+}
+
 .gap-32 {
     gap: 32px;
 }
