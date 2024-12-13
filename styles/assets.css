@@ -118,3 +118,10 @@ input::placeholder {
 .button:hover, .button-2:hover {
     cursor: pointer;
 }
+
+.sideline-blue {
+    height: 40px;
+    width: 3px;
+    background-color: var(--color-light-blue);
+    border-radius: 8px;
+}

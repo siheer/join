@@ -5,6 +5,7 @@
     --bg-white: #FFFFFF;
     --bg-color-dark-blue: #091931;
     --bg-color-blue: #0C2E62;
+    --bg-color-orange: #FF3D00;
 
     --color-light-blue: #29ABE2;
     --color-light-gray: #D1D1D1;
@@ -119,4 +120,8 @@ h2 {
 h3 {
     font-size: 20px;
     color: var(--color-light-blue);
+}
+
+.main-content {
+    width: 100%;
 }
