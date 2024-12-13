@@ -120,8 +120,13 @@ input::placeholder {
 }
 
 .sideline-blue {
-    height: 40px;
+    height: 60px;
     width: 3px;
     background-color: var(--color-light-blue);
     border-radius: 8px;
+}
+
+h4 {
+    font-size: 27px;
+    font-weight: 100;
 }

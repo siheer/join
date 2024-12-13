@@ -3,14 +3,14 @@
     justify-content: flex-start;
     align-items: center;
     gap: 16px;
-    padding: 32px;
+    padding: 86px 86px 0 100px;
 }
 
 .summary-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 64px;
+    gap: 86px;
 }
 
 .summary-content {
