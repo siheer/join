@@ -30,6 +30,10 @@ a:hover {
     gap: 16px;
 }
 
+.gap-32 {
+    gap: 32px;
+}
+
 .section-pad {
     padding: 16px 64px;
 }
