@@ -46,10 +46,11 @@ let allData = {};
 document.addEventListener("DOMContentLoaded", async () => {
     if (window.history.length === 1) window.history.replaceState({ previousURL: document.referrer }, "");
     await includeHTML();
-    document.body.style.visibility = 'visible';
-    outsideLogIn()
-    setInitialsSpan();
-    paintActiveLink();
+    if (hasAccess()) {
+        setInitialsSpan();
+        paintActiveLink();
+        document.body.style.visibility = 'visible';
+    }
 });
 
 /**
@@ -60,25 +61,6 @@ async function setInitialsSpan() {
         const queryContactWhereMailMatch = `?orderBy=%22mail%22&equalTo=%22${encodeURIComponent(localStorage.getItem('mail'))}%22`;
         const contactOfLoggedInUser = await fetchResource('contacts', 'GET', undefined, queryContactWhereMailMatch);
         document.getElementById('user-initials').textContent = Object.values(contactOfLoggedInUser)[0]?.initials;
-    }
-}
-
-/**
- * Hide content, when legal pages are accessed without login
- */
-function outsideLogIn() {
-    let info = sessionStorage.getItem('isLoggedIn');
-
-    if (info !== 'true') {
-        const sidebar = document.getElementById('sidebar-main');
-        const account = document.getElementById('account-menue');
-
-        if (sidebar) {
-            sidebar.classList.replace('links-container', 'dni');
-        }
-        if (account) {
-            account.classList.add('dni');
-        }
     }
 }
 

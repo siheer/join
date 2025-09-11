@@ -96,13 +96,13 @@ async function logIn(path, enteredEmail, enteredPassword, isGuest) {
             const guestUser = { email: enteredEmail, password: enteredPassword };
             validateMatch(guestUser, true);
         } else {
-          let matchingUser = null;
-          if (responseToJson) {
-            matchingUser = Object.values(responseToJson).find(user =>
-                user.email === enteredEmail && user.password === enteredPassword
-            );
-          }
-          validateMatch(matchingUser);
+            let matchingUser = null;
+            if (responseToJson) {
+                matchingUser = Object.values(responseToJson).find(user =>
+                    user.email === enteredEmail && user.password === enteredPassword
+                );
+            }
+            validateMatch(matchingUser);
         }
     } catch (error) {
         console.error("Login error:", error);
@@ -129,12 +129,12 @@ function validateMatch(matchingUser, isGuest = false) {
         addToSessionStorage(true);
         localStorage.setItem("mail", matchingUser.email);
         clearLoginData();
-        window.location.href = "/html/summary.html?msg=you have logged in successfully&isLoggedIn=true";
+        window.location.href = "/html/summary.html";
     } else {
         let email = document.getElementById('email');
         let password = document.getElementById('password');
         checkLogin(email, password);
-        clearLoginData(password);
+        clearLoginData();
     }
 }
 
@@ -151,14 +151,6 @@ function checkLogin(email, password) {
         document.getElementById('email').style.border = "1px solid red";
         document.getElementById('password').style.border = "1px solid red";
     }
-}
-
-/**
- * Clears the password input field.
- * @param {HTMLElement} password - The password input element.
- */
-function clearLoginData(password) {
-    password.value = "";
 }
 
 /**
