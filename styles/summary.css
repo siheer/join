@@ -18,6 +18,13 @@
   width: 50%;
 }
 
+.todo-container:hover,
+.tasks-container:hover,
+.urgent-container:hover {
+  cursor: pointer;
+  user-select: none;
+}
+
 .todo-container {
   display: flex;
   padding: 0 20px;

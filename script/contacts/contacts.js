@@ -263,6 +263,7 @@ function displayContactDetails(contact) {
  * @returns {void}
  */
 function handleResponsiveView() {
+  if(isOnContactsPage()) {
     if (window.innerWidth < 1025) {
         if (activeContactId) {
             showResponsiveView();
@@ -272,6 +273,7 @@ function handleResponsiveView() {
     } else {
         showDesktopView();
     }
+  }
 }
 
 /**
@@ -346,4 +348,12 @@ function navigateBackToContactList() {
  */
 function getRandomColor() {
     return contactColors[Math.floor(Math.random() * contactColors.length)];
+}
+
+/**
+ * Checks if user is indeed on /contacts.html
+ * @returns {boolean}
+ */
+function isOnContactsPage() {
+  return location.pathname.includes('contacts');
 }

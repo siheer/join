@@ -236,7 +236,7 @@ async function checkEmail(email) {
  */
 function errorFunctionEmail() {
     document.getElementById('errorMessageEmail').innerHTML = /*html*/`
-        <div class="errorText">please enter a valid email address</div>`;
+        <div class="errorText">Please enter a valid email address</div>`;
     document.getElementById('email').style.border = "1px solid red";
 }
 

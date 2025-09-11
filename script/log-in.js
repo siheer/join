@@ -96,10 +96,13 @@ async function logIn(path, enteredEmail, enteredPassword, isGuest) {
             const guestUser = { email: enteredEmail, password: enteredPassword };
             validateMatch(guestUser, true);
         } else {
-            const matchingUser = Object.values(responseToJson).find(user =>
+          let matchingUser = null;
+          if (responseToJson) {
+            matchingUser = Object.values(responseToJson).find(user =>
                 user.email === enteredEmail && user.password === enteredPassword
             );
-            validateMatch(matchingUser);
+          }
+          validateMatch(matchingUser);
         }
     } catch (error) {
         console.error("Login error:", error);

@@ -23,6 +23,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: -32px;
     height: 489px;
     width: 652px;
     background-color: var(--bg-white);
@@ -121,7 +122,11 @@
 
 @media(max-width: 768px) {
     .login-page .section-pad {
-        padding: 24px 8px;
+        padding: 12px 8px;
+    }
+
+    .login-container {
+      margin-top: unset;
     }
 
     .login-page header {
@@ -134,7 +139,7 @@
     }
 
     .login-page main {
-        padding: 64px 24px;
+        padding: 32px 24px;
     }
 
     .logo-little-responsive {

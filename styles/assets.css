@@ -25,7 +25,7 @@ footer {
 main {
     display: flex;
     justify-content: center;
-    padding: 64px;
+    padding: 32px;
 }
 
 .headline-container {
@@ -111,7 +111,6 @@ textarea:focus {
 .button-container {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 24px;
     width: 100%;
 }
 

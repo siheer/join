@@ -1,4 +1,5 @@
 // For development purposes only (FDPO)
+
 const userTemplate = {
     name: '',
     mail: '',
@@ -20,7 +21,7 @@ const taskTemplate = {
     description: '',
     dueDate: '2023-05-10',
     assignedTo: [''],
-    priority: '', // Medium, Urgent, Low
+    priority: '', // Urgent, Medium, Low
     subtasks: [
         {
             title: '',
@@ -29,7 +30,8 @@ const taskTemplate = {
         {
             title: '',
             done: false
-        },]
+        }
+    ]
 }
 
 const localContacts = [
@@ -489,4 +491,42 @@ const readOnly = {
         }
     }
 }
+
+// to fill database with inital data, write on index.html console:
+// putListData('contacts', readOnly.contacts)
+// putListData('tasks', readOnly.tasks)
+
+// call for example like this: postData('contacts', localContacts);
+async function postArrayData(path, dataArray) {
+    for (const data of dataArray) {
+        fetchResource(path, 'POST', data);
+    }
+}
+
+async function putArrayData(path, dataArray) {
+    for (const data of dataArray) {
+        fetchResource(path, 'PUT', data);
+    }
+}
+
+async function postObjectData(path, dataObject) {
+    for (const data of Object.values(dataObject)) {
+        fetchResource(path, 'POST', data);
+    }
+}
+
+async function putObjectData(path, dataObject) {
+    for (const data of Object.values(dataObject)) {
+        fetchResource(path, 'PUT', data);
+    }
+}
+
+async function putListData(list, data) {
+    fetchResource(list, 'PUT', data);
+}
+
+async function putTasksDataFromExampleData() {
+    putListData('tasks', readOnly.tasks);
+}
+
 // FDPO end
