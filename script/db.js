@@ -496,6 +496,21 @@ const readOnly = {
 // putListData('contacts', readOnly.contacts)
 // putListData('tasks', readOnly.tasks)
 
+/* Set up rules in Firebase for example like this (careful - very non-restricted access!):
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "users": {
+      ".indexOn": ["email"]
+    },
+    "contacts": {
+      ".indexOn": ["mail"]
+    }
+  }
+}
+*/
+
 // call for example like this: postData('contacts', localContacts);
 async function postArrayData(path, dataArray) {
     for (const data of dataArray) {

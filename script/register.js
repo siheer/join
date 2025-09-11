@@ -23,10 +23,17 @@ function getUserInputs() {
     };
 }
 
+/**
+ * @typedef {Object} ValidationResult
+ * @property {boolean} isPasswordValid - Whether the password and confirmation match.
+ * @property {boolean} isNameValid - Whether the username meets validation rules.
+ * @property {boolean} isEmailValid - Whether the email is valid.
+ * @property {boolean} isPrivacyPolicyChecked - Whether the privacy policy checkbox is checked.
+ * @property {boolean} mailAlreadyExists - Whether the email is already registered.
+ */
 
 /**
  * Validates user input fields asynchronously.
- * Checks password confirmation, username validity, email format, privacy policy agreement, and email uniqueness.
  *
  * @async
  * @function validateUserInputs
@@ -35,12 +42,7 @@ function getUserInputs() {
  * @param {string} confirmPassword - The password confirmation input.
  * @param {string} userName - The user's full name.
  * @param {HTMLElement} privacyPolicy - The checkbox element for privacy policy agreement.
- * @returns {Promise<Object>} A promise resolving to an object with boolean validation results:
- * - `isPasswordValid` {boolean} - Whether the password and confirmation match.
- * - `isNameValid` {boolean} - Whether the username meets validation rules.
- * - `isEmailValid` {boolean} - Whether the email is valid.
- * - `isPrivacyPolicyChecked` {boolean} - Whether the privacy policy checkbox is checked.
- * - `mailAlreadyExists` {boolean} - Whether the email is already registered.
+ * @returns {Promise<ValidationResult>} The validation results.
  */
 async function validateUserInputs(email, password, confirmPassword, userName, privacyPolicy) {
     const [isPasswordValid, isNameValid, isEmailValid, isPrivacyPolicyChecked, mailAlreadyExists] = 
@@ -60,7 +62,13 @@ async function validateUserInputs(email, password, confirmPassword, userName, pr
     };
 }
 
-
+/**
+ * @param {string} rawEmail
+ * @returns {string}
+ */
+function normalizeEmail(rawEmail) {
+  return (rawEmail || "").trim().toLowerCase();
+}
 
 /**
  * Adds a new user to the system after validating inputs.
@@ -89,7 +97,7 @@ async function addUser() {
     // Add user to contacts and update login credentials asynchronously
     await Promise.all([
         addToContacts(email, userName, color, getInitials(userName.value)),
-        updateUser({ email: email.value, password: password.value })
+        updateUser({ email: normalizeEmail(email.value), password: password.value })
     ]);
 }
 
@@ -106,7 +114,7 @@ async function addUser() {
  */
 async function addToContacts(email, userName, color, initials) {
     let registerData = {
-        "mail": email.value,
+        "mail": normalizeEmail(email.value),
         "name": userName.value,
         "color": color,
         "initials": initials
@@ -126,35 +134,49 @@ function clearAllUserData() {
 }
 
 /**
- * Checks if the given email already exists in the database.
- * @async
- * @param {HTMLInputElement} email - The email input element.
- * @returns {Promise<boolean>} True if email exists, otherwise false.
+ * Displays a generic lookup error message and highlights the email field.
+ * @param {HTMLInputElement} emailEl - The email input element.
  */
-async function checkEmailExisting(email) {
-    const queryUrl = `${BASE_URL}users.json?orderBy=%22email%22&equalTo=%22${email.value}%22`;
-    try {
-        const response = await fetch(queryUrl);
-        if (!response.ok) return logError(response);
-        const result = await response.json();
-        return handleEmailExistence(result);
-    } catch (error) {
-        console.error("Error:", error);
-        return false;
-    }
+function showEmailLookupError(emailEl) {
+  document.getElementById('errorMessageEmail').innerHTML =
+    '<div class="errorText">We couldn’t validate your email right now. Please try again.</div>';
+  emailEl.style.border = '1px solid red';
 }
 
-function logError(response) {
-    console.error("HTTP Error:", response.status, response.statusText);
-    return false;
+/**
+ * Handles the API request and response parsing for checking if an email exists,
+ * using the shared `fetchResource` helper.
+ *
+ * @async
+ * @param {string} queryString - The encoded Firebase query string, beginning with "?".
+ * @param {HTMLInputElement} emailEl - The email input element (used for UI updates).
+ * @returns {Promise<boolean>} True if the email exists or an error occurred, otherwise false.
+ */
+async function performEmailLookup(queryString, emailEl) {
+  const result = await fetchResource('users', 'GET', undefined, queryString);
+
+  if (result === false) {
+    showEmailLookupError(emailEl);
+    return true;
+  }
+
+  const exists = !!(result && Object.keys(result).length > 0);
+  if (exists) errorFunctionEmailExist();
+  return exists;
 }
 
-function handleEmailExistence(result) {
-    if (Object.keys(result).length > 0) {
-        errorFunctionEmailExist();
-        return true;
-    }
-    return false;
+/**
+ * Checks if the given email already exists in the database.
+ * In case of network/HTTP errors, registration is blocked.
+ *
+ * @async
+ * @param {HTMLInputElement} emailEl - The email input element.
+ * @returns {Promise<boolean>} True if the email exists or an error occurred (stop registration), otherwise false.
+ */
+async function checkEmailExisting(emailEl) {
+  const normalized = normalizeEmail(emailEl.value);
+  const queryString = `?orderBy=${encodeURIComponent('"email"')}&equalTo=${encodeURIComponent(`"${normalized}"`)}`;
+  return performEmailLookup(queryString, emailEl);
 }
 
 /**
@@ -192,7 +214,7 @@ function checkPassword(password, confirmPassword) {
     if (password.value !== confirmPassword.value ||
         password.value.trim() === "" ||
         password.value.length < 8 ||
-        password.value.length > 20) {
+        password.value.length > 40) {
         errorFunctionPassword();
         return false;
     } else {
@@ -207,7 +229,7 @@ function checkPassword(password, confirmPassword) {
  * Displays an error for invalid or mismatched passwords.
  */
 function errorFunctionPassword() {
-    const errorMessage = '<div class="errorText">Your passwords must match and be 8–20 characters.</div>';
+    const errorMessage = '<div class="errorText">Your passwords must match and be 8–40 characters.</div>';
     document.getElementById('errorMessageConfirmPassword').innerHTML = errorMessage;
     document.getElementById('errorMessagePassword').innerHTML = errorMessage;
     document.getElementById('confirmPassword').style.border = "1px solid red";
