@@ -2,7 +2,7 @@
  * Base URL for the Firebase database.
  * @constant {string}
  */
-const BASE_URL = "https://databaseEndpoint.com/";
+const BASE_URL = config.databaseEndpoint;
 
 /**
  * Fetch Resource for a any path after BASE
